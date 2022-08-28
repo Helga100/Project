@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Main {
 
-
+// test comment
     public static void main(String[] args) {
         InternetStore internetStore = new InternetStore();
         internetStore.main();
