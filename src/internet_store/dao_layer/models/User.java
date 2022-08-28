@@ -1,4 +1,4 @@
-package internet_store.dao_layer;
+package internet_store.dao_layer.models;
 
 import java.util.Objects;
 
@@ -8,6 +8,24 @@ public class User {
     boolean isAdmin;
     boolean isBlocked;
     String ID;
+
+    public String getLogin() {
+        return login;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
 
     public User(String login1, String password, String ID) {
         this.login = login1;

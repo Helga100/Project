@@ -1,4 +1,6 @@
-package internet_store.dao_layer;
+package internet_store.dao_layer.models;
+
+import internet_store.dao_layer.OrderStatus;
 
 public class Order {
 
@@ -18,6 +20,15 @@ public class Order {
                 ", product=" + product +
                 ", id='" + id + '\'' +
                 '}';
+    }
+
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String getId() {
+        return id;
     }
 
 }

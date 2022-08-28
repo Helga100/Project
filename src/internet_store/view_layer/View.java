@@ -1,5 +1,8 @@
 package internet_store.view_layer;
 
+import internet_store.InternetStore;
+import internet_store.dao_layer.DB;
+
 import java.util.Scanner;
 
 public class View {
@@ -9,7 +12,6 @@ public class View {
     public View() {
         this.scanner = new Scanner(System.in);
     }
-
 
     public int getIntFromConsole() {
         final int choice1 = scanner.nextInt();
@@ -65,4 +67,44 @@ public class View {
     }
 
 
+    public void showCategoriesForGirls() {
+        System.out.println("Products categories: ");
+        System.out.println("1. Outwear");
+        System.out.println("2. Trousers");
+        System.out.println("3. Blouses");
+        System.out.println("4. Suits");
+        System.out.println("5. Shoes");
+        System.out.println("6. Dresses");
+        System.out.println("7. Skirts");
+    }
+
+    public void showCategoriesForBoys() {
+        System.out.println("Products categories: ");
+        System.out.println("1. Outwear");
+        System.out.println("2. Trousers");
+        System.out.println("3. Shirts");
+        System.out.println("4. Suits");
+        System.out.println("5. Shoes");
+    }
+
+
+
+
+
+    public void adminShowProductMenu() {
+        System.out.println("Products menu (Admin)");
+        System.out.println("a. Edit existing product details");
+        System.out.println("b. Add new product");
+    }
+
+
+
+
+
+
+
+
+    public void showAllUserOrders(DB database) {
+        System.out.println("Your orders: " + database.getOrderDB().getDbOrders());
+    }
 }

@@ -1,4 +1,4 @@
-package internet_store.dao_layer;
+package internet_store.dao_layer.models;
 
 public class Product {
     String name;
@@ -36,8 +36,21 @@ public class Product {
                 '}';
     }
 
-    public Product() {
 
-
+    public void setColor(String color) {
+        this.color = color;
     }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public int getId() {
+        return id;
+    }
+
 }
