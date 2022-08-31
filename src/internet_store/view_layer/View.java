@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class View {
 
-    Scanner scanner;
+    private Scanner scanner;
 
     public View() {
         this.scanner = new Scanner(System.in);

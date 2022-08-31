@@ -2,15 +2,23 @@ package internet_store.servive_layer;
 
 import internet_store.dao_layer.DB;
 import internet_store.dao_layer.OrderStatus;
-import internet_store.dao_layer.models.Order;
-import internet_store.dao_layer.models.Product;
-import internet_store.dao_layer.models.User;
+import internet_store.dao_layer.models.*;
 import internet_store.view_layer.View;
 
 import java.util.ArrayList;
 
 public class DBService implements DBServiceInterface{
-    DB db;
+    String CONFIRM_ORGER = "1", UNCONFIRM_ORDER = "2";
+    final String BLOCK_USER = "1", UNBLOCK_USER = "2";
+    final String OUTWEAR = "OUTWEAR";
+    final String TROUSERS = "TROUSERS";
+    final String SKIRTS = "SKIRTS";
+    final String SUITS = "SUITS";
+    final String SHOES = "SHOES";
+    final String DRESSES = "DRESSES";
+    final String BLOUSES = "BLOUSES";
+
+    private DB db;
 
     public DBService(DB db) {
         this.db = db;
@@ -21,7 +29,7 @@ public class DBService implements DBServiceInterface{
         System.out.println("Input product ID ");
         final String idProduct = view.getStringFromConsole();
         System.out.println("Input colorProduct ");
-        final String newColorProduct = view.getStringFromConsole();
+        final Color newColorProduct = Color.of(view.getStringFromConsole());
         database.getProductDB().setProductColor(idProduct, newColorProduct);
         System.out.println(database.getProductDB().getProductById(idProduct));
     }
@@ -31,10 +39,10 @@ public class DBService implements DBServiceInterface{
         String newProductName = view.getStringFromConsole();
 
         System.out.println("Please input size of the product");
-        String newProductSize = view.getStringFromConsole();
+        ProductSize newProductSize = ProductSize.of(view.getStringFromConsole());
 
         System.out.println("Please input color of the product");
-        String newProductColor = view.getStringFromConsole();
+        Color newProductColor = Color.of(view.getStringFromConsole());
 
         System.out.println("Please input sex of the product");
         String newProductSex = view.getStringFromConsole();
@@ -67,17 +75,16 @@ public class DBService implements DBServiceInterface{
         System.out.println("1.Confirm order");
         System.out.println("2.Unconfirm order");
         final String s = view.getStringFromConsole();
-        if (s.equals("1")) {
+        if (s.equals(CONFIRM_ORGER)) {
             database.getOrderDB().setOrderStatusById(orderId, OrderStatus.CONFIRM);
             System.out.println("Order confirmed");
-        } else if (s.equals("2")) {
+        } else if (s.equals(UNCONFIRM_ORDER)) {
             database.getOrderDB().setOrderStatusById(orderId, OrderStatus.UNCONFIRM);
             System.out.println("Order unconfirmed");
         }
     }
 
     public void adminUserMenuBlockAndUnblockUser(DB database, View view) {
-        final String BLOCK_USER = "1", UNBLOCK_USER = "2";
         System.out.println("List of users: ");
         System.out.println(database.getUserDB().getDbUsers());
         System.out.println("Input id user");
@@ -100,41 +107,38 @@ public class DBService implements DBServiceInterface{
         }
     }
 
-
     public void genderMenuFilterByGirls(DB database, View view) {
+
         ArrayList<Product> girlProduct = database.getProductDB().getProductsBySex("girl");
         System.out.println(girlProduct);
-
         view.showCategoriesForGirls();
-
         String choiceGirlCategory = view.getStringFromConsole();
         ArrayList<Product> categoryProducts = new ArrayList<>();
 
         switch (choiceGirlCategory) {
-            case "1":
-                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex("OUTWEAR", "girl"));
+            case OUTWEAR:
+                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex(OUTWEAR, "girl"));
                 break;
-            case "2":
-                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex("TROUSERS", "girl"));
+            case TROUSERS:
+                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex(TROUSERS, "girl"));
                 break;
-            case "3":
-                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex("BLOUSES", "girl"));
+            case SKIRTS:
+                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex(SKIRTS, "girl"));
                 break;
-            case "4":
-                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex("SUITS", "girl"));
+            case SUITS:
+                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex(SUITS, "girl"));
                 break;
-            case "5":
-                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex("SHOES", "girl"));
+            case SHOES:
+                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex(SHOES, "girl"));
                 break;
-            case "6":
-                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex("DRESSES", "girl"));
+            case DRESSES:
+                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex(DRESSES, "girl"));
                 break;
-            case "7":
-                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex("SKIRTS", "girl"));
+            case BLOUSES:
+                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex(BLOUSES, "girl"));
                 break;
             default:
                 System.out.println("No such clothes");
-
                 break;
         }
 
@@ -149,20 +153,20 @@ public class DBService implements DBServiceInterface{
         ArrayList<Product> categoryProducts = new ArrayList<>();
 
         switch (choiceBoyCategory) {
-            case "1":
-                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex("OUTWEAR", "boy"));
+            case OUTWEAR:
+                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex(OUTWEAR, "boy"));
                 break;
-            case "2":
-                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex("TROUSERS", "boy"));
+            case TROUSERS:
+                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex(TROUSERS, "boy"));
                 break;
-            case "3":
-                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex("SHIRTS", "boy"));
+            case SKIRTS:
+                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex(SKIRTS, "boy"));
                 break;
-            case "4":
-                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex("SUITS", "boy"));
+            case SUITS:
+                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex(SUITS, "boy"));
                 break;
-            case "5":
-                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex("SHOES", "boy"));
+            case SHOES:
+                categoryProducts.addAll(database.getProductDB().getProductsByCategoryAndSex(SHOES, "boy"));
                 break;
             default:
                 System.out.println("No such clothes");
@@ -188,7 +192,6 @@ public class DBService implements DBServiceInterface{
     }
 
     public void addNewOrderByProductId(String idChoice) {
-
         Product product = db.getProductDB().getProductById(idChoice);
         Order order = new Order(product, "1");
         db.getOrderDB().addNewOrder(order);

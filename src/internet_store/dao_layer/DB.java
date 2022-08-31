@@ -7,16 +7,15 @@ import internet_store.dao_layer.tables.ProductDB;
 import internet_store.dao_layer.tables.UserDB;
 
 public class DB  {
-    UserDB userDB;
-    ProductDB productDB;
-    OrderDB orderDB;
+    private UserDB userDB;
+    private ProductDB productDB;
+    private OrderDB orderDB;
 
     public DB() {
         this.userDB = new UserDB();
         this.productDB = new ProductDB();
         this.orderDB = new OrderDB();
     }
-
 
     public UserDB getUserDB() {
         return userDB;
@@ -29,7 +28,5 @@ public class DB  {
     public OrderDB getOrderDB() {
         return orderDB;
     }
-
-
 
 }

@@ -1,16 +1,15 @@
 package internet_store.dao_layer.models;
 
 public class Product {
-    String name;
-    String size;
-    String color;
-    String sex;
-    int age;
-    String category;
-    int id;
+    private String name;
+    private ProductSize size;
+    private Color color;
+    private String sex;
+    private int age;
+    private String category;
+    private int id;
 
-
-    public Product(String name, String size, String color, String sex, int age, String cp, int id) {
+    public Product(String name, ProductSize size, Color color, String sex, int age, String cp, int id) {
         this.name = name;
         this.size = size;
         this.color = color;
@@ -18,8 +17,6 @@ public class Product {
         this.age = age;
         this.category = cp;
         this.id = id;
-
-
     }
 
     @Override
@@ -37,7 +34,7 @@ public class Product {
     }
 
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 

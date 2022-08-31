@@ -5,11 +5,10 @@ import internet_store.dao_layer.models.User;
 import java.util.ArrayList;
 
 public class UserDB {
-    ArrayList<User> dbUsers;
+    ArrayList<User> dbUsers = new ArrayList<>();
 
 
     public UserDB() {
-        this.dbUsers = new ArrayList<>();
         init();
     }
 
@@ -24,10 +23,9 @@ public class UserDB {
     }
 
     public User getUserById(String idUserFromConcole) {
-        final User userFoundById = dbUsers.stream().filter(it -> it.getID().equals(idUserFromConcole))
+        return dbUsers.stream().filter(it -> it.getID().equals(idUserFromConcole))
                 .findFirst()
                 .get();
-        return userFoundById;
     }
 
     public ArrayList<User> getDbUsers() {
@@ -35,19 +33,20 @@ public class UserDB {
     }
 
     public boolean isUserBlocked(String login) {
-        final User foundedUser = dbUsers.stream().filter(it -> it.getLogin().equals(login))
+      return dbUsers.stream().filter(it -> it.getLogin().equals(login))
                 .findFirst()
-                .get();
+                .get()
+                .isBlocked();
 
-        return foundedUser.isBlocked();
+
     }
 
     public boolean isAdmin(String login) {
-        final User foundedUser = dbUsers.stream().filter(it -> it.getLogin().equals(login))
+        return  dbUsers.stream().filter(it -> it.getLogin().equals(login))
                 .findFirst()
-                .get();
+                .get()
+                .isAdmin();
 
-        return foundedUser.isAdmin();
     }
 
     public void addNewUser(String login, String password) {
@@ -62,9 +61,8 @@ public class UserDB {
     }
 
     public User findUserByLoginAndPassword(String loginFromConcole1, String passwordFromConcole1) {
-        final User foundUser = dbUsers.stream()
+        return dbUsers.stream()
                 .filter(it -> it.getLogin().equals(loginFromConcole1) && it.getPassword().equals(passwordFromConcole1))
                 .findFirst().orElse(null);
-        return foundUser;
     }
 }

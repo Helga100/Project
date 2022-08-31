@@ -12,7 +12,6 @@ public class ValidationImpl implements ValidationService{
         System.out.println("Input password: ");
         final String passwordFromConcole = view.getStringFromConsole();
 
-
         if (database.getUserDB().isUserExists(loginFromConcole, passwordFromConcole)) {
             if (database.getUserDB().isAdmin(loginFromConcole)) {
                 logics.adminMenu(database, view);
@@ -23,7 +22,6 @@ public class ValidationImpl implements ValidationService{
                     logics.userMenu(database, view);
                 }
             }
-
         } else {
             System.out.println("Please check Login or Password");
         }

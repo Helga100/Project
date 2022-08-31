@@ -3,16 +3,15 @@ package internet_store.dao_layer.models;
 import java.util.Objects;
 
 public class User {
-    String login;
-    String password;
-    boolean isAdmin;
-    boolean isBlocked;
-    String ID;
+    private String login;
+    private String password;
+    private boolean isAdmin;
+    private boolean isBlocked;
+    private String ID;
 
     public String getLogin() {
         return login;
     }
-
 
     public String getPassword() {
         return password;
@@ -34,20 +33,16 @@ public class User {
         this.isBlocked = false;
         this.ID = ID;
 
-
     }
 
-    public User(String login1, String password, boolean isAdmin, String ID ) {
+    public User(String login1, String password, boolean isAdmin, String ID) {
         this.login = login1;
         this.password = password;
         this.isAdmin = isAdmin;
         this.isBlocked = false;
         this.ID = ID;
 
-
     }
-
-
 
     @Override
     public boolean equals(Object o) {
